@@ -15,5 +15,4 @@ class LogicsImpl(private val size: Int) extends Logics:
 
   override def isOver: Boolean = center.x - ticks < 0 || center.x + ticks >= size || center.y - ticks < 0 || center.y + ticks >= size
 
-  override def hasElement(x: Int, y: Int): Boolean =
-    abs(x - center.x) <= ticks && abs(y - center.y) <= ticks
+  override def hasElement(x: Int, y: Int): Boolean = abs(x - center.x) <= ticks && abs(y - center.y) <= ticks
