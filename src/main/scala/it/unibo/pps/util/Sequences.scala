@@ -1,10 +1,12 @@
 package it.unibo.pps.util
 
-import it.unibo.pps.util.Optionals.Optional.*
 import it.unibo.pps.util.Optionals.Optional
+import it.unibo.pps.util.Optionals.Optional.*
+
+import scala.annotation.tailrec
 
 object Sequences: // Essentially, generic linkedlists
-  
+
   enum Sequence[E]:
     case Cons(head: E, tail: Sequence[E])
     case Nil()
@@ -52,8 +54,17 @@ object Sequences: // Essentially, generic linkedlists
       def reverse(): Sequence[A] = sequence match
         case Cons(h, t) => t.reverse().concat(Cons(h, Nil()))
         case _ => Nil()
+
+      def size: Int =
+        @tailrec
+        def _size(s: Sequence[A], acc: Int): Int = s match
+          case Cons(_, t) => _size(t, acc + 1)
+          case _ => acc
+
+        _size(sequence, 0)
+
 @main def trySequences =
-  import Sequences.* 
+  import Sequences.*
   val sequence = Sequence(1, 2, 3)
   println(sequence)
   println(sequence.head)

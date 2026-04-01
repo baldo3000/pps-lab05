@@ -34,6 +34,7 @@ object Sets:
       def add(a: A): Set[A] = Set(a).union(s)
       def filter(f: A => Boolean): Set[A] = Sequence.filter(s)(f)
       def find(f: A => Boolean): Optional[A] = Sequence.find(s)(f)
+      def size: Int = Sequence.size(s)
       def map[B](f: A => B): Set[B] = Sequence.map(s)(f)
       def remove(a: A): Set[A] = s.filter(_ != a)
       def toSequence: Sequence[A] = s
